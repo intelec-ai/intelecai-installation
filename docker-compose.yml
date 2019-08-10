@@ -1,0 +1,108 @@
+version: "3.2"
+services:
+  intelec-backend:
+    image: intelecai/automl-server
+    volumes:
+      - type: volume
+        source: user-home
+        target: /home
+        read_only: true
+      - type: volume
+        source: training
+        target: /training
+      - type: volume
+        source: deployed-models
+        target: /deployed-models
+    deploy:
+      restart_policy:
+        condition: on-failure
+    env_file:
+      - config/automl.env
+    environment:
+      - INFERENCE_SERVER_PUBLIC_URL=http://localhost:81
+    networks:
+      - webnet
+      - dbnet
+
+  intelec-inference:
+    image: intelecai/inference-server
+    volumes:
+      - type: volume
+        source: deployed-models
+        target: /models
+        read_only: true
+    environment:
+      - MODELS_IN_MEMORY=2
+    deploy:
+      restart_policy:
+        condition: on-failure
+    networks:
+      - webnet
+
+  db:
+    image: mysql:5.7.24
+    env_file:
+      - config/db/mysql_root_password.env
+    environment:
+      MYSQL_DATABASE: intelec_ai
+    volumes:
+      - type: volume
+        source: db-data
+        target: /var/lib/mysql
+      - type: bind
+        source: config/db
+        target: /docker-entrypoint-initdb.d
+        read_only: true
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "3306:3306"
+    networks:
+      - dbnet
+
+  sftp:
+    image: atmoz/sftp:debian-stretch
+    volumes:
+      - type: volume
+        source: user-home
+        target: /home/ftpuser
+      - type: volume
+        source: sftp-ssh
+        target: /etc/ssh
+      - type: bind
+        source: config/sftp_users.conf
+        target: /etc/sftp/users.conf
+        read_only: true
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+        - "2222:22"
+
+  nginx:
+    image: nginx:1.15-alpine    
+    volumes:
+      - type: bind
+        source: config/nginx
+        target: /etc/nginx/conf.d
+        read_only: true
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "80:80"
+      - "81:81"
+    networks: 
+      - webnet
+      
+volumes:
+  db-data:
+  user-home:
+  sftp-ssh:
+  training:
+  deployed-models:
+
+networks:
+  webnet:
+  dbnet:
