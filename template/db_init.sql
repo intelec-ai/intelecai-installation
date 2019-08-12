@@ -24,10 +24,10 @@ create table common_info (
   PRIMARY KEY (`name`)
 );
 
-CREATE USER 'app_user'@'%' IDENTIFIED BY '_app_pass_';
+CREATE USER 'app_user'@'%' IDENTIFIED BY 'app_user_password';
 GRANT SELECT,INSERT,UPDATE,DELETE ON intelec_ai.* TO 'app_user'@'%';
 
-CREATE USER 'report_user'@'%' IDENTIFIED BY '_rpt_pss_';
+CREATE USER 'report_user'@'%' IDENTIFIED BY 'report_user_password';
 GRANT SELECT ON intelec_ai.file_inference TO 'report_user'@'%';
 
 FLUSH PRIVILEGES;
