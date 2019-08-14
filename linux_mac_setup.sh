@@ -1,10 +1,35 @@
 #!/bin/bash
 
-config_folder="test_config"
+# ask user accept license agreement
+echo
+echo "Welcome! This script will help you set up Intelec AI in your computer."
+echo "First, you need to read and accept the license agreement."
+read -n 1 -s -r -p "Please press any key to continue "
+echo -e "\n\n"
+
+cat LICENSE
+echo
+echo "You need to accept the above license agreement to continue:"
+echo "- please press ENTER to accept the license agreement"
+echo "- please press ESC key to exit, if you don't want to accept the agreement"
+
+# Loop until either Enter or Esc key was pressed
+while true; do 
+    read -s -n1  key
+    if [ "$key" = $'\e' ]; then
+        echo "[ESC] was pressed. Set up was cancelled."
+        exit
+    elif [ "$key" = '' ] ;then
+        break
+    fi
+done
+
+config_folder="config"
 
 mkdir -p $config_folder/db
 mkdir -p $config_folder/nginx
 
+echo
 echo -n "Create FTP password: "
 read -s sftp_pass
 echo
@@ -33,6 +58,14 @@ session_key=`openssl rand -base64 30`
 printf "$automl_template" "$db_app_user_pass" "$session_key" "$admin_pass" > $config_folder/automl.env
 
 cp template/nginx/* $config_folder/nginx/
+
+echo "Starting to download required software (docker images)"
+docker swarm init
+docker pull intelecai/automl-server
+docker pull intelecai/inference-server
+docker pull mysql:5.7.24
+docker pull atmoz/sftp:debian-stretch
+docker pull nginx:1.15-alpine
 
 echo DONE!
 echo FTP user details were saved in $config_folder/sftp_users.conf
