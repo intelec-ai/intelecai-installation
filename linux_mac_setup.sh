@@ -60,7 +60,7 @@ printf "$automl_template" "$db_app_user_pass" "$session_key" "$admin_pass" > $co
 cp template/nginx/* $config_folder/nginx/
 
 echo "Starting to download required software (docker images)"
-docker swarm init
+docker swarm init > /dev/null 2>&1
 docker pull intelecai/automl-server
 docker pull intelecai/inference-server
 docker pull mysql:5.7.24
