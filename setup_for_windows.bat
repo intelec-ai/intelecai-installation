@@ -91,4 +91,5 @@ echo Another database user details can be found in config\db\db_init.sql
 echo Admin password for web application was saved in config\automl.env
 
 echo.
-pause
+echo Press any key to exit . . .
+pause > nul
