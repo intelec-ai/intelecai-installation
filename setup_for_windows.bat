@@ -61,15 +61,15 @@ for /f "Tokens=* Delims=" %%x in (template\db_init.sql) do set db_init_template=
 set tmp=%db_init_template:app_user_password=!db_app_user_pass!%
 echo %tmp:report_user_password=!db_rpt_user_pass!% > config\db\db_init.sql
 
-REM build automl.en file
-echo DB_HOST=db > config/automl.env
-echo DB_NAME=intelec_ai >> config/automl.env
-echo DB_USER=app_user >> config/automl.env
-echo DB_PASS=%db_app_user_pass% >> config/automl.env
-echo SESSION_NAME=in_ai_session >> config/automl.env
-echo SESSION_VALUE=%session_key% >> config/automl.env
-echo ADMIN_USERNAME=admin >> config/automl.env
-echo ADMIN_PASSWORD=%admin_pass% >> config/automl.env
+REM build automl.env file
+echo DB_HOST=db > config\automl.env
+echo DB_NAME=intelec_ai >> config\automl.env
+echo DB_USER=app_user >> config\automl.env
+echo DB_PASS=%db_app_user_pass% >> config\automl.env
+echo SESSION_NAME=in_ai_session >> config\automl.env
+echo SESSION_VALUE=%session_key% >> config\automl.env
+echo ADMIN_USERNAME=admin >> config\automl.env
+echo ADMIN_PASSWORD=%admin_pass% >> config\automl.env
 
 robocopy "template\nginx" "config\nginx" > nul 2>&1
 
