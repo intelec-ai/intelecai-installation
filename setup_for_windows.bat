@@ -27,8 +27,11 @@ set /P db_rpt_user_pass="Create database report user password: "
 set /P admin_pass="Create admin password for web application: "
 
 echo.
-echo Please make sure that docker is running before continuing
-pause
+where docker > nul 2>&1
+IF %ERRORLEVEL% NEQ 0 (
+    echo Please make sure that docker is running before continuing
+    pause
+)
 
 REM generate random database user password for the app
 SET db_app_user_pass=%random%%random%%random%%random%%random%%random%
@@ -51,44 +54,49 @@ SET session_key=%session_key:5=f%
 if not exist "config" mkdir config
 if not exist "config\db" mkdir config\db
 if not exist "config\nginx" mkdir config\nginx
+if not exist "config\sftp" mkdir config\sftp
 
-echo ftpuser:%sftp_pass%:1000:100:upload > config\sftp_users.conf
-echo MYSQL_ROOT_PASSWORD=%mysql_root_pass% > config\db\mysql_root_password.env
+echo ftpuser:%sftp_pass%:1000:100:upload> config\sftp\users.conf
+echo MYSQL_ROOT_PASSWORD=%mysql_root_pass%> config\mysql_root_password.env
 
 REM Read database initialization template, put app and report user passwords in and write the result into a config file
 SETLOCAL EnableDelayedExpansion
 for /f "Tokens=* Delims=" %%x in (template\db_init.sql) do set db_init_template=!db_init_template!%%x
 set tmp=%db_init_template:app_user_password=!db_app_user_pass!%
-echo %tmp:report_user_password=!db_rpt_user_pass!% > config\db\db_init.sql
+echo %tmp:report_user_password=!db_rpt_user_pass!%> config\db\db_init.sql
 
 REM build automl.env file
-echo DB_HOST=db > config\automl.env
-echo DB_NAME=intelec_ai >> config\automl.env
-echo DB_USER=app_user >> config\automl.env
-echo DB_PASS=%db_app_user_pass% >> config\automl.env
-echo SESSION_NAME=in_ai_session >> config\automl.env
-echo SESSION_VALUE=%session_key% >> config\automl.env
-echo ADMIN_USERNAME=admin >> config\automl.env
-echo ADMIN_PASSWORD=%admin_pass% >> config\automl.env
+echo DB_HOST=db> config\automl.env
+echo DB_NAME=intelec_ai>> config\automl.env
+echo DB_USER=app_user>> config\automl.env
+echo DB_PASS=%db_app_user_pass%>> config\automl.env
+echo SESSION_NAME=in_ai_session>> config\automl.env
+echo SESSION_VALUE=%session_key%>> config\automl.env
+echo ADMIN_USERNAME=admin>> config\automl.env
+echo ADMIN_PASSWORD=%admin_pass%>> config\automl.env
 
 robocopy "template\nginx" "config\nginx" > nul 2>&1
 
-echo Starting to download required software (docker images)
+echo Starting to download required docker images
 docker swarm init > nul 2>&1
 docker pull intelecai/automl-server
 docker pull intelecai/inference-server
 docker pull mysql:5.7.24
 docker pull atmoz/sftp:debian-stretch
 docker pull nginx:1.15-alpine
+docker pull busybox
+
+docker run -v intelecai_config-db:/config/db -v intelecai_config-nginx:/config/nginx -v intelecai_config-sftp:/config/sftp --name dummy-helper1 busybox true
+
+docker cp config\db\. dummy-helper1:/config/db
+docker cp config\nginx\. dummy-helper1:/config/nginx
+docker cp config\sftp\. dummy-helper1:/config/sftp
+
+docker rm dummy-helper1 > nul 2>&1
 
 echo.
-echo DONE!
+echo DONE
 echo.
-
-echo FTP user details were saved in config\sftp_users.conf
-echo Database root password was saved in config\db\mysql_root_password.env
-echo Another database user details can be found in config\db\db_init.sql
-echo Admin password for web application was saved in config\automl.env
 
 echo.
 echo Press any key to exit . . .
