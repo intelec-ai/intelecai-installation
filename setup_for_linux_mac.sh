@@ -38,9 +38,11 @@ read -s -p "Create admin password for web application: " admin_pass
 echo
 
 echo
-echo "Please make sure that docker is running before continuing "
-read -n 1 -s -r -p "Press any key to continue ..."
-echo 
+hash docker 2>/dev/null || {
+    echo "Please make sure that docker is running before continuing "
+    read -n 1 -s -r -p "Press any key to continue ..."
+    echo 
+}
 echo 
 
 mkdir -p config/db
