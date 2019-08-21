@@ -19,7 +19,7 @@ services:
     env_file:
       - config/automl.env
     environment:
-      - INFERENCE_SERVER_PUBLIC_URL=http://localhost:81
+      - INFERENCE_SERVER_PUBLIC_URL=http://localhost:7701
     networks:
       - webnet
       - dbnet
@@ -91,8 +91,8 @@ services:
       restart_policy:
         condition: on-failure
     ports:
-      - "80:80"
-      - "81:81"
+      - "7700:80"
+      - "7701:81"
     networks: 
       - webnet
       
