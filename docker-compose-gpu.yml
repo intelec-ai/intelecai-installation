@@ -19,7 +19,7 @@ services:
     env_file:
       - config/automl.env
     environment:
-      - INFERENCE_SERVER_PUBLIC_URL=http://localhost:7701
+      - INFERENCE_SERVER_PUBLIC_URL=http://{this_host}:7701
     networks:
       - webnet
       - dbnet

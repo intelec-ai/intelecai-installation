@@ -16,7 +16,8 @@ Intelec AI is a platform to automate building and deploying machine learning mod
    * or clone the git repository like this `git clone https://github.com/intelec-ai/intelecai-installation.git`
 2. Go to the downloaded folder, click on `setup_for_windows.bat` and follow the instructions.
 3. You can start Intelec AI by clicking on `start_servers.bat` after the set up is complete.
-4. You can stop Intelec AI by clicking on `stop_servers.bat`.
+4. Wait for 10 seconds, then visit http://localhost:7700 to open Intelec AI.
+5. You can stop Intelec AI by clicking on `stop_servers.bat`.
 
 ## Installation in Linux and Mac
 
@@ -33,4 +34,5 @@ Intelec AI is a platform to automate building and deploying machine learning mod
    * for normal set up, please run `./setup_for_linux_mac.sh` 
    * for set up with **GPU support**, please run `./setup_for_linux_mac.sh --gpu` . Note that you need to install [Nvidia Docker](https://github.com/NVIDIA/nvidia-docker) if you would like to set up Intelec AI with GPU support.
 3. You can start Intelec AI by running `start_servers.sh` after the set up is complete.
-4. You can stop Intelec AI by running `stop_servers.sh`.
+4. Wait for 10 seconds, then visit http://localhost:7700 to open Intelec AI.
+5. You can stop Intelec AI by running `stop_servers.sh`.
