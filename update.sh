@@ -8,3 +8,7 @@ hash docker 2>/dev/null || {
 
 docker pull intelecai/automl-server
 docker pull intelecai/inference-server
+
+echo 
+echo "Intelec AI was updated successfully."
+echo 

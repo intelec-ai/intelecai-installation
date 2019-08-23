@@ -14,7 +14,15 @@ docker volume rm intelecai_sftp-ssh
 docker volume rm intelecai_training
 docker volume rm intelecai_user-home
 
-docker image rm intelecai/automl-server
+config=`cat config/config.txt`
+if [ "$config" = "gpu_support=true" ]; then
+    docker image rm intelecai/automl-server:latest-gpu
+else
+    docker image rm intelecai/automl-server
+fi
+
 docker image rm intelecai/inference-server
 
+echo 
 echo "Intelec AI was uninstalled successfully."
+echo 

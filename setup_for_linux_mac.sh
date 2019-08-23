@@ -19,7 +19,7 @@ while true; do
     if [ "$key" = $'\e' ]; then
         echo "Set up was cancelled."
         exit
-    elif [ "$key" = '' ] ;then
+    elif [ "$key" = '' ]; then
         break
     fi
 done
@@ -72,9 +72,17 @@ echo "ADMIN_PASSWORD=$admin_pass" >> config/automl.env
 
 cp template/nginx/* config/nginx/
 
-echo "Starting to download required software (docker images)"
+echo "Starting to download docker images"
 docker swarm init > /dev/null 2>&1
-docker pull intelecai/automl-server
+
+if [ "$1" = "--gpu" ]; then
+    docker pull intelecai/automl-server:latest-gpu
+    echo "gpu_support=true" > config/config.txt
+else
+    docker pull intelecai/automl-server
+    echo "gpu_support=false" > config/config.txt
+fi
+
 docker pull intelecai/inference-server
 docker pull mysql:5.7.24
 docker pull atmoz/sftp:debian-stretch

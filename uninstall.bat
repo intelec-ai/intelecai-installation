@@ -22,6 +22,7 @@ docker volume rm intelecai_config-sftp
 docker image rm intelecai/automl-server
 docker image rm intelecai/inference-server
 
+echo.
 echo Intelec AI was uninstalled successfully.
 
 echo.
