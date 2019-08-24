@@ -6,7 +6,7 @@ This repository is intended to help people install and configure Intelec AI. Ple
 
 Intelec AI is a platform to automate building and deploying machine learning models. 
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/klv_3L68MJ0/0.jpg)](https://www.youtube.com/watch?v=klv_3L68MJ0)
+[![Intelec AI Demo](https://github.com/intelec-ai/intelecai-installation/raw/master/demo_image.png)](https://www.youtube.com/watch?v=klv_3L68MJ0)
 
 ## Installation in Windows
 
