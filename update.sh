@@ -6,7 +6,13 @@ hash docker 2>/dev/null || {
     echo 
 }
 
-docker pull intelecai/automl-server
+config=`cat config/config.txt`
+if [ "$config" = "gpu_support=true" ]; then
+    docker pull intelecai/automl-server:latest-gpu
+else
+    docker pull intelecai/automl-server
+fi
+
 docker pull intelecai/inference-server
 
 echo 
