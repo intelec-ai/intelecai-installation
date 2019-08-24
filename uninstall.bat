@@ -17,7 +17,8 @@ docker volume rm intelecai_training
 docker volume rm intelecai_user-home
 docker volume rm intelecai_config-db
 docker volume rm intelecai_config-nginx
-docker volume rm intelecai_config-sftp 
+docker volume rm intelecai_config-sftp
+docker volume rm intelecai_root
 
 docker image rm intelecai/automl-server
 docker image rm intelecai/inference-server

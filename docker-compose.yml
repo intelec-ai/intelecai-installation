@@ -13,6 +13,9 @@ services:
       - type: volume
         source: deployed-models
         target: /deployed-models
+      - type: volume
+        source: root
+        target: /root
     deploy:
       restart_policy:
         condition: on-failure
@@ -102,6 +105,7 @@ volumes:
   sftp-ssh:
   training:
   deployed-models:
+  root:
 
 networks:
   webnet:

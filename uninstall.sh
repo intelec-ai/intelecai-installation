@@ -13,6 +13,7 @@ docker volume rm intelecai_deployed-models
 docker volume rm intelecai_sftp-ssh
 docker volume rm intelecai_training
 docker volume rm intelecai_user-home
+docker volume rm intelecai_root
 
 config=`cat config/config.txt`
 if [ "$config" = "gpu_support=true" ]; then
