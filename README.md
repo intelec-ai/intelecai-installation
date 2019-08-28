@@ -1,4 +1,4 @@
-# Intelec AI instalation
+# Intelec AI - Automated machine learning platform with GPU support free to download
 
 This repository is intended to help people install and configure Intelec AI. Please note that Intelec AI works on [Docker](https://www.docker.com/). Please download and install docker before starting Intelec AI installation.
 
