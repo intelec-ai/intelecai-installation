@@ -6,7 +6,7 @@ This repository is intended to help people install and configure Intelec AI. Ple
 
 Intelec AI is a platform to automate building and deploying machine learning models. 
 
-[![Intelec AI Demo](https://github.com/intelec-ai/intelecai-installation/raw/master/demo_image.png)](https://www.youtube.com/watch?v=klv_3L68MJ0)
+[![Intelec AI Demo](https://github.com/intelec-ai/intelecai-installation/raw/master/img/demo_image.png)](https://www.youtube.com/watch?v=klv_3L68MJ0)
 
 ## Installation in Windows
 
@@ -36,3 +36,9 @@ Intelec AI is a platform to automate building and deploying machine learning mod
 3. You can start Intelec AI by running `start_servers.sh` after the set up is complete.
 4. Wait for 10 seconds, then visit http://localhost:7700 to open Intelec AI.
 5. You can stop Intelec AI by running `stop_servers.sh`.
+
+## Installation demo
+
+The following demo shows how to install Intelec AI in a computer step-by-step.
+
+[![Intelec AI installation demo](https://github.com/intelec-ai/intelecai-installation/raw/master/img/installation_demo.png)](https://www.youtube.com/watch?v=0fQquKIb1MU)
