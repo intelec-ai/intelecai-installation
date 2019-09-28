@@ -42,3 +42,7 @@ Intelec AI is a platform to automate building and deploying machine learning mod
 The following demo shows how to install Intelec AI in a computer step-by-step.
 
 [![Intelec AI installation demo](https://github.com/intelec-ai/intelecai-installation/raw/master/img/installation_demo.png)](https://www.youtube.com/watch?v=0fQquKIb1MU)
+
+## Report a problem or give a feedback
+
+Please write to [info@intelec.ai](mailto://info@intelec.ai) or fill [this form](https://forms.gle/tcWBTaGUnJJGpJVd8) to report a problem or give a feedback.
