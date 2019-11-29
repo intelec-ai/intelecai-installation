@@ -6,7 +6,6 @@ services:
       - type: volume
         source: user-home
         target: /home
-        read_only: true
       - type: volume
         source: training
         target: /training
