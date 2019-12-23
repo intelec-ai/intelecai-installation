@@ -6,8 +6,7 @@ hash docker 2>/dev/null || {
     echo 
 }
 
-config=`cat config/config.txt`
-if [ "$config" = "gpu_support=true" ]; then
+if [ "$1" = "--gpu" ]; then
     docker pull intelecai/automl-server:latest-gpu
 else
     docker pull intelecai/automl-server

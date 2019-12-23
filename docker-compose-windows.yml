@@ -58,29 +58,8 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
-    ports:
-      - "3306:3306"
     networks:
       - dbnet
-
-  sftp:
-    image: atmoz/sftp:debian-stretch
-    volumes:
-      - type: volume
-        source: user-home
-        target: /home/ftpuser
-      - type: volume
-        source: sftp-ssh
-        target: /etc/ssh
-      - type: volume
-        source: config-sftp
-        target: /etc/sftp
-        read_only: true
-    deploy:
-      restart_policy:
-        condition: on-failure
-    ports:
-        - "2222:22"
 
   nginx:
     image: nginx:1.15-alpine    
@@ -101,12 +80,10 @@ services:
 volumes:
   db-data:
   user-home:
-  sftp-ssh:
   training:
   deployed-models:
   config-db:
   config-nginx:
-  config-sftp:
   root:
 
 networks:
