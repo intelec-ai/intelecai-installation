@@ -62,7 +62,7 @@ services:
       - dbnet
 
   nginx:
-    image: nginx:1.15-alpine    
+    image: nginx:1.15-alpine
     volumes:
       - type: bind
         source: config/nginx
