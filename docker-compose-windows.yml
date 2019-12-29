@@ -44,7 +44,7 @@ services:
   db:
     image: mysql:5.7.24
     env_file:
-      - config/mysql_root_password.env
+      - config/db/mysql_root_password.env
     environment:
       MYSQL_DATABASE: intelec_ai
     volumes:

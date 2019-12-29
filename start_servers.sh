@@ -6,6 +6,8 @@ hash docker 2>/dev/null || {
     echo
 }
 
+docker swarm init 2>/dev/null
+
 docker run --rm intelecai/inference-server echo 'Inference Server image is ready'
 docker run --rm mysql:5.7.24 echo 'MySQL Server image is ready'
 docker run --rm nginx:1.15-alpine echo 'Nginx Server image is ready'
