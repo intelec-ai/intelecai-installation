@@ -20,5 +20,5 @@ docker rm dummy-helper1 > nul 2>&1
 docker stack deploy -c docker-compose-windows.yml intelecai
 
 echo Starting Intelec AI ...
-ping 127.0.0.1 -n 11 > nul
+ping 127.0.0.1 -n 16 > nul
 echo Please open http://localhost:7700 in your web browser to visit Intelec AI web page.
