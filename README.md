@@ -29,7 +29,7 @@ Intelec AI is a zero code machine learning platform. It can help you automate bu
 2. Go to the downloaded folder and give 'executable' permission to the required files: 
    * `cd intelecai-installation`
    * `chmod +x *.sh`
-3. You can start Intelec AI by running `./start_servers.sh` after the set up is complete. If you would like to **use GPU** for model training, then you need to add '--gpu' parameter at the end, i.e `./start_servers.sh --gpu`. Note that you need to install [Nvidia Docker](https://github.com/NVIDIA/nvidia-docker) if you would like to set up Intelec AI with GPU support.
+3. You can start Intelec AI by running `./start_servers.sh` after the set up is complete. <u>**If you would like to use GPU**</u> for model training, then you need to run `./start_servers_gpu.sh`. Note that you need to install [Nvidia Docker](https://github.com/NVIDIA/nvidia-docker) if you would like to set up Intelec AI with GPU support.
 4. Wait for 10 seconds, then visit http://localhost:7700 to open Intelec AI.
 5. You can stop Intelec AI by running `stop_servers.sh`.
 

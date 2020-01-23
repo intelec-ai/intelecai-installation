@@ -21,5 +21,5 @@ else
 fi
 
 echo "Starting Intelec AI ..."
-sleep 15
+sleep 20
 echo "Please open http://localhost:7700 in your web browser to visit Intelec AI web page."
