@@ -1,4 +1,4 @@
-version: "3.2"
+version: "3.6"
 services:
   intelec-backend:
     image: intelecai/automl-server
@@ -15,6 +15,10 @@ services:
       - type: volume
         source: root
         target: /root
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+          size: 2000000000
     deploy:
       restart_policy:
         condition: on-failure
