@@ -6,7 +6,7 @@ This repository is intended to help people set up Intelec AI on their computer o
 
 Intelec AI is a zero code machine learning platform. It can help you automate building and deploying machine learning models.
 
-[![Intelec AI Demo](https://github.com/intelec-ai/intelecai-installation/raw/master/img/demo_image.png)](https://www.youtube.com/watch?v=klv_3L68MJ0)
+[![Intelec AI Demo](https://github.com/intelec-ai/intelecai-installation/raw/master/img/demo_image.png)](https://www.youtube.com/watch?v=7qJ6chU_5UE)
 
 ## Setting up Intelec AI in Windows
 
@@ -14,9 +14,15 @@ Intelec AI is a zero code machine learning platform. It can help you automate bu
 1. Download the required files for Intelec AI set up from Github. You can do it either of the following 2 ways:
    * download them as a zip file from here https://github.com/intelec-ai/intelecai-installation/archive/master.zip and unzip it (right click on the zip file and choose "Extract All...")
    * or clone the git repository like this `git clone https://github.com/intelec-ai/intelecai-installation.git`
-2. Start Intelec AI by clicking on `start_servers.bat`.
-3. Visit http://localhost:7700 to open Intelec AI.
-4. You can stop Intelec AI by clicking on `stop_servers.bat`.
+2. (Optional) It would be nice if you could let docker use more memory and CPU. You can do it by going Docker > Settings > Advanced and increasing the limits for CPU, memory and swap. For example,
+
+![Open docker settings](https://github.com/intelec-ai/intelecai-installation/raw/master/img/open_docker_settings.png)
+
+![Increase limits](https://github.com/intelec-ai/intelecai-installation/raw/master/img/increase_limits.png)
+
+3. Start Intelec AI by clicking on `start_servers.bat`.
+4. Visit http://localhost:7700 to open Intelec AI.
+5. You can stop Intelec AI by clicking on `stop_servers.bat`.
 
 ## Installation in Linux and Mac
 
@@ -50,6 +56,20 @@ You need to have Linux operating system and an Nvidia GPU in order to add GPU su
 ```
 
 Then, after installing Intelec AI, you can start it with GPU support by running `./start_servers_gpu.sh`
+
+## Troubleshooting
+
+If you can't open the web page of Intelec AI, you can use following techniques to find out the problem:
+
+1. If you have an older version of docker, please uninstall it, then install a newer one, hopefully the latest version.
+
+2. Check whether all docker services of Intelec AI are running. "REPLICAS" column should show "1/1" for all services. If one of the services is "0/1", then check the log of that service to find out why: `docker service logs [service ID]`. For example, you will need to run `docker service logs ky0p7rt281be` in the following case:
+
+![Check docker services](https://github.com/intelec-ai/intelecai-installation/raw/master/img/check_docker_services.png)
+
+3. If a failed service has no logs, check why the service can't be started. You can do it by inspecting the corresponding docker task. First, run `docker stack ps intelecai` to find out the task ID. Then execute `docker inspect [taskID]`. For example,
+
+![Inspect task](https://github.com/intelec-ai/intelecai-installation/raw/master/img/inspect_task.png)
 
 ## Report a problem or give a feedback
 
