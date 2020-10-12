@@ -20,6 +20,7 @@ create table tasks (
   `type` VARCHAR(100) NOT NULL,
   `task_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `details` VARCHAR(5000),
+  `running` BOOLEAN DEFAULT TRUE,
   PRIMARY KEY (`id`)
 );
 
