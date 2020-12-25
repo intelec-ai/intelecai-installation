@@ -27,17 +27,18 @@ Intelec AI is a zero code machine learning platform. It can help you automate bu
 ## Installation in Linux and Mac
 
 0. Download, install and start docker in your machine, if you haven't done it so far. You can [install Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/install/) or [Docker Community Edition for Linux](https://docs.docker.com/install/linux/docker-ce/ubuntu/) (choose the appropriate linux distribution from the left hand side).
-1. Download the required files for Intelec AI set up from Github. You can do it either of the following 2 ways:
+1. In Linux, [Manage docker as a non-root user](https://docs.docker.com/engine/install/linux-postinstall/)
+2. Download the required files for Intelec AI set up from Github. You can do it either of the following 2 ways:
    * download them as a zip file from here https://github.com/intelec-ai/intelecai-installation/archive/master.zip and unzip it. For example,
       * `wget https://github.com/intelec-ai/intelecai-installation/archive/master.zip`
       * `unzip intelecai-installation-master.zip`
    * or clone the git repository like this `git clone https://github.com/intelec-ai/intelecai-installation.git`
-2. Go to the downloaded folder and give 'executable' permission to the required files: 
+3. Go to the downloaded folder and give 'executable' permission to the required files: 
    * `cd intelecai-installation`
    * `chmod +x *.sh`
-3. Now you can start Intelec AI by running `./start_servers.sh`.
-4. Visit http://localhost:7700 to open Intelec AI.
-5. You can stop Intelec AI by running `./stop_servers.sh`.
+4. Now you can start Intelec AI by running `./start_servers.sh`.
+5. Visit http://localhost:7700 to open Intelec AI.
+6. You can stop Intelec AI by running `./stop_servers.sh`.
 
 ## GPU support
 
@@ -54,8 +55,6 @@ You need to have Linux operating system and an Nvidia GPU in order to add GPU su
     }
 }
 ```
-
-Then, after installing Intelec AI, you can start it with GPU support by running `./start_servers_gpu.sh`
 
 ## Troubleshooting
 

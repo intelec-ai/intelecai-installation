@@ -6,12 +6,7 @@ hash docker 2>/dev/null || {
     echo 
 }
 
-if [ "$1" = "--gpu" ]; then
-    docker pull intelecai/automl-server:latest-gpu
-else
-    docker pull intelecai/automl-server
-fi
-
+docker pull intelecai/automl-server
 docker pull intelecai/inference-server
 
 echo 
