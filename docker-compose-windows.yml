@@ -7,9 +7,6 @@ services:
         source: user-home
         target: /home
       - type: volume
-        source: trainings
-        target: /trainings
-      - type: volume
         source: deployed-models
         target: /deployed-models
       - type: volume
@@ -80,7 +77,6 @@ services:
 volumes:
   db-data:
   user-home:
-  trainings:
   deployed-models:
   config-db:
   config-nginx:
