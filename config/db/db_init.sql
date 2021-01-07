@@ -18,9 +18,10 @@ create table tasks (
   `id` integer auto_increment ,
   `name` VARCHAR(200) NOT NULL,
   `type` VARCHAR(100) NOT NULL,
-  `task_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` INTEGER NOT NULL REFERENCES users(id),
   `details` VARCHAR(5000),
   `running` BOOLEAN DEFAULT TRUE,
+  `task_created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 );
 
